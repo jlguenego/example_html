@@ -30,3 +30,11 @@ main {
     font-weight: bold;
 }
 
+.logo:hover {
+    background: #ddd;
+}
+
+.logo:active {
+    text-decoration: underline;
+}
+
