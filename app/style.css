@@ -19,3 +19,14 @@ header, footer {
 main {
     height: calc(100% - 8em);
 }
+
+.site-id {
+    font-size: 2em;
+    text-decoration: none;
+    color: inherit;
+}
+
+.logo {
+    font-weight: bold;
+}
+
