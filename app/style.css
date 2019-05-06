@@ -1,0 +1,21 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+}
+
+header, footer {
+    height: 4em;
+    background: #eee;
+    padding: 0.5em;
+}
+
+main {
+    height: calc(100% - 8em);
+}
