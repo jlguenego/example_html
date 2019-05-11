@@ -2,7 +2,8 @@
     box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
     height: 100%;
 }
 
@@ -10,10 +11,11 @@ body {
     margin: 0;
 }
 
-header, footer {
+header,
+footer {
     height: 4em;
     background: #eee;
-    padding: 0.5em;
+    padding: 0 1em;
 }
 
 main {
@@ -22,21 +24,28 @@ main {
 }
 
 .site-id {
-    font-size: 2em;
-    text-decoration: none;
-    color: inherit;
+    padding: 0.2em;
 }
 
-.logo {
-    font-weight: bold;
-}
-
-.logo:hover {
+.site-id:hover {
     background: #ddd;
 }
 
-.logo:active {
+.site-id:active {
     text-decoration: underline;
+}
+
+.site-id img {
+    position: relative;
+    top: 0.15em;
+    width: 2em;
+}
+
+.site-id a {
+    font-size: 2em;
+    text-decoration: none;
+    color: inherit;
+    font-weight: bold;
 }
 
 nav a:focus {
@@ -52,3 +61,25 @@ nav a:focus {
     line-height: 1.15em;
 }
 
+header {
+    display: grid;
+    justify-items: start;
+    align-items: center;
+}
+
+footer {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+}
+
+main {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+}
+
+main nav {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
