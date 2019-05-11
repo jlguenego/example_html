@@ -62,9 +62,12 @@ nav a:focus {
 }
 
 header {
-    display: grid;
-    justify-items: start;
-    align-items: center;
+    display: table;
+    width: 100%;
+}
+header div {
+    display: table-cell;
+    vertical-align: middle;
 }
 
 footer {
