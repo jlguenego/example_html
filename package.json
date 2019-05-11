@@ -1,0 +1,23 @@
+{
+  "name": "example_html",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jlguenego/example_html.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jlguenego/example_html/issues"
+  },
+  "homepage": "https://github.com/jlguenego/example_html#readme",
+  "dependencies": {
+    "http-server": "^0.11.1"
+  }
+}
