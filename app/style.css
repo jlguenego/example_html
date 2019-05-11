@@ -86,3 +86,20 @@ main nav {
     display: grid;
     grid-template-columns: 50% 50%;
 }
+
+main nav a {
+    position: relative;
+    display: block;
+    text-align: center;
+    background: #eee;
+    margin: 1em;
+    width: 5em;
+    height: 5em;
+}
+
+main nav a span {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%)
+}
