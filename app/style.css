@@ -90,17 +90,11 @@ main nav {
 
 /* inconvenient: text can be on one line only. */
 main nav a {
-    display: block;
-    text-align: center;
+    display: flex;
     background: #eee;
     margin: 1em;
     width: 10em;
     height: 5em;
-    line-height: 5em;
-}
-
-main nav a span {
-    display: inline-block;
-    white-space: nowrap;
-    vertical-align: middle;
+    justify-content: center;
+    align-items: center;
 }
