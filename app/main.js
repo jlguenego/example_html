@@ -1,5 +1,5 @@
 (async () => {
-    console.log('starting app');
+    console.log('starting appxx');
 
     const states = {
         home: { tmpl: 'tmpl/home.html', title: 'Home', url: '' },
@@ -14,43 +14,38 @@
         return 'home';
     };
 
-    const goto = async (state, isFirst) => {
-        console.log('goto', state);
+    const goto = async (state, opts) => {
+        const options = Object.assign({}, opts);
         const tmpl = await fetch(states[state].tmpl);
         document.querySelector('main').innerHTML = await tmpl.text();
-        const url = ('url' in states[state]) ? states[state].url : state;
-        console.log('url', url);
+
+        const url = document.baseURI + (('url' in states[state]) ? states[state].url : state);
         const title = states[state].title;
-        if (isFirst) {
-            window.history.replaceState({ url, title, state }, title, baseHref + url);
-        } else {
-            window.history.pushState({ url, title, state }, title, baseHref + url);
+        if (options.isFirst) {
+            window.history.replaceState({ url, title, state }, title, url);
+        } else if (!options.isBack) {
+            window.history.pushState({ url, title, state }, title, url);
         }
         window.document.title = title;
-        console.log('history.state', history.state);
     };
 
     window.goto = (...args) => {
+        // do not call goto with await.
         goto(...args);
+        // return false to avoid the navigator to load a.href
         return false;
     };
-
-    const initialState = getInitialState();
-    await goto(initialState, true);
-
-    
 
     window.addEventListener("popstate", function (e) {
         console.log('popstate', e);
         const stateObj = history.state;
-        console.log('state', stateObj);
-        if (stateObj === null) {
-            // it is a pushstate ?
-            console.log('pushstate ?');
-            return;
-        }
-        window.goto(stateObj.state);
+        window.goto(stateObj.state, { isBack: true });
+    });
+
+    const initialState = getInitialState();
+    await goto(initialState, { isFirst: true });
 
 
-    }, false);
+
+
 })();
