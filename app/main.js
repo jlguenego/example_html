@@ -30,6 +30,10 @@
             }
         });
         document.querySelector('main').innerHTML = await tmpl.text();
+        document.querySelectorAll('[text]').forEach(n => {
+            const myVar = n.getAttribute('text');
+            n.innerHTML = eval(myVar);
+        });
 
         const url = document.baseURI + (('url' in states[state]) ? states[state].url : state);
         const title = states[state].title;

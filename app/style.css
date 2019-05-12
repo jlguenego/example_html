@@ -98,3 +98,13 @@ main nav a {
     justify-content: center;
     align-items: center;
 }
+
+textarea {
+    display: block;
+    width: 100%;
+}
+
+.answers {
+    display: flex;
+    flex-flow: row nowrap;
+}
