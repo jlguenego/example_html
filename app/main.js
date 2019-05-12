@@ -1,9 +1,10 @@
 (async () => {
-    console.log('starting appxx');
+    console.log('starting app');
 
     const states = {
         home: { tmpl: 'tmpl/home.html', title: 'Home', url: '' },
         create_quizz: { tmpl: 'tmpl/create-quizz.html', title: 'Créer un Quizz' },
+        create_quizz_add_question: { tmpl: 'tmpl/create-quizz-add-question.html', title: 'Créer un Quizz - AJouter une question' },
         list_quizz: { tmpl: 'tmpl/list-quizz.html', title: 'Tous les Quizz' },
     };
 
@@ -16,7 +17,11 @@
 
     const goto = async (state, opts) => {
         const options = Object.assign({}, opts);
-        const tmpl = await fetch(states[state].tmpl);
+        const tmpl = await fetch(states[state].tmpl, {
+            headers: {
+                'Cache-Control': 'no-cache'
+            }
+        });
         document.querySelector('main').innerHTML = await tmpl.text();
 
         const url = document.baseURI + (('url' in states[state]) ? states[state].url : state);
