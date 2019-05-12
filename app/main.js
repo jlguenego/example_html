@@ -57,7 +57,4 @@
     const initialState = getInitialState();
     await goto(initialState, { isFirst: true });
 
-
-
-
 })();
