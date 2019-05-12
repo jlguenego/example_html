@@ -1,29 +1,44 @@
 (async () => {
-    console.log('starting appxxx');
+    console.log('starting app');
+
     const states = {
-        home: { tmpl: 'tmpl/home.html', title: 'Home' },
+        home: { tmpl: 'tmpl/home.html', title: 'Home', url: '' },
         create_quizz: { tmpl: 'tmpl/create-quizz.html', title: 'Créer un Quizz' },
         list_quizz: { tmpl: 'tmpl/list-quizz.html', title: 'Tous les Quizz' },
     };
-    const initialState = 'home';
-    const tmpl = await fetch(states[initialState].tmpl);
-    document.querySelector('main').innerHTML = await tmpl.text();
-    const url = '/app/';
-    const title = 'Quizzz ???';
-    const state = initialState;
-    history.replaceState({ url, title, state }, title, url);
-    window.goto = async (state) => {
+
+    const baseHref = document.baseURI;
+    console.log('baseHref', baseHref);
+
+    const getInitialState = () => {
+        return 'home';
+    };
+
+    const goto = async (state, isFirst) => {
         console.log('goto', state);
         const tmpl = await fetch(states[state].tmpl);
         document.querySelector('main').innerHTML = await tmpl.text();
-        const url = `./${state}`;
+        const url = ('url' in states[state]) ? states[state].url : state;
+        console.log('url', url);
         const title = states[state].title;
-        window.history.pushState({ url, title, state }, title, url);
+        if (isFirst) {
+            window.history.replaceState({ url, title, state }, title, baseHref + url);
+        } else {
+            window.history.pushState({ url, title, state }, title, baseHref + url);
+        }
         window.document.title = title;
-        const stateObj = history.state;
-        console.log('stateObj', stateObj);
+        console.log('history.state', history.state);
+    };
+
+    window.goto = (...args) => {
+        goto(...args);
         return false;
     };
+
+    const initialState = getInitialState();
+    await goto(initialState, true);
+
+    
 
     window.addEventListener("popstate", function (e) {
         console.log('popstate', e);
