@@ -4,8 +4,11 @@
     const states = {
         home: { tmpl: 'tmpl/home.html', title: 'Home', url: '' },
         create_quizz: { tmpl: 'tmpl/create-quizz.html', title: 'Créer un Quizz' },
-        create_quizz_add_question: { tmpl: 'tmpl/create-quizz-add-question.html', title: 'Créer un Quizz - AJouter une question' },
+        create_quizz_add_question: { tmpl: 'tmpl/create-quizz-add-question.html', title: 'Créer un Quizz - Ajouter une question' },
+        create_quizz_question_form: { tmpl: 'tmpl/create-quizz-question-form.html', title: 'Créer un Quizz - Formulaire question' },
+        create_quizz_save: { tmpl: 'tmpl/create-quizz-save.html', title: 'Créer un Quizz - Sauvé !' },
         list_quizz: { tmpl: 'tmpl/list-quizz.html', title: 'Tous les Quizz' },
+        legal: { tmpl: 'tmpl/legal.html', title: 'Mentions Légales' },
     };
 
     const baseHref = document.baseURI;
@@ -17,6 +20,10 @@
 
     const goto = async (state, opts) => {
         const options = Object.assign({}, opts);
+        if (!states[state]) {
+            console.error('state not found:', state, states);
+            state = 'home';
+        }
         const tmpl = await fetch(states[state].tmpl, {
             headers: {
                 'Cache-Control': 'no-cache'
@@ -31,7 +38,7 @@
         } else if (!options.isBack) {
             window.history.pushState({ url, title, state }, title, url);
         }
-        window.document.title = title;
+        window.document.title = 'Quizz: ' + title;
     };
 
     window.goto = (...args) => {
